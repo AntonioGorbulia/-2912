@@ -1,4 +1,4 @@
-class Student:
+class Relative:
     def __init__(self, name: str, id: int):
         self.name = name
         self.id = id
@@ -9,35 +9,35 @@ class Student:
             self.group.msg(text, self)
 
 
-class Group:
+class Chat:
     def __init__(self, name: str):
         self.name: str = name
-        self.members: list[Student] = []
+        self.members: list[Relative] = []
 
-    def add(self, student: Student):
-        self.members.append(student)
-        student.group = self
+    def add(self, relative: Relative):
+        self.members.append(relative)
+        member.chat = self
 
     def remove(self, id: int):
-        for member in self.members:
+        for relative in self.members:
             if member.id == id:
-                member.group = None
-                self.members.remove(member)
+                member.chat = None
+                self.members.remove(relative)
                 break
 
-    def msg(self, text: str, src: Student = None):
+    def msg(self, text: str, src: Relative = None):
         if src == None:
             src = self
-        for member in self.members:
+        for relative in self.members:
             if not member.id == src.id:
-                print(f"{src.name} -> {member.name}: {text}")
+                print(f"{src.name} -> {relative.name}: {text}")
 
 
-Dima = Student("Dima", 1)
-Anton = Student("Anton", 2)
-group = Group("B2912")
+Mama = Relative("Mama", 1)
+Papa = Relative("Papa", 2)
+chat = Chat("B2912")
 
-group.add(Dima)
-group.add(Anton)
+chat.add(Dima)
+chat.add(Anton)
 
-Dima.msg_to_group("Privet vsem")
+Mama.msg_to_chat("Privet vsem")
